@@ -1,5 +1,5 @@
 const { mods } = require("./utils/mods");
-const { ppCalculator } = require("./utils/ppCalculator");
+const { tools } = require("./utils/tools");
 const { user } = require("./Functions/user");
 const { beatmap } = require("./Functions/beatmap");
 const { leaderboard } = require("./Functions/leaderboard");
@@ -12,6 +12,6 @@ module.exports = {
 		leaderboard,
 		other,
 	},
-	tools: { ppCalculator },
+	tools,
 	mods,
 };
