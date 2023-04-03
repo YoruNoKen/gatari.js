@@ -13,7 +13,7 @@ npm install gatari-api-wrapper
 # Example
 
 ```js
-const { userClass, beatmapClass, leaderboardClass, gatari_api } = require("./src/index");
+const { userClass, beatmapClass, leaderboardClass, gatari_api } = require("gatari-api-wrapper");
 
 const user = new userClass();
 const beatmap = new beatmapClass();
