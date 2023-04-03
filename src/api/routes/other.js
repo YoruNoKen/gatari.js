@@ -1,5 +1,5 @@
 const baseURL = "https://api.gatari.pw";
-const { handlers } = require("../utils/errorHandler");
+const { handlers } = require("../../utilities/errorHandler");
 
 const other = {
 	topScores: async function (mode, period) {

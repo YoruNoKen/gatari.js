@@ -1,4 +1,4 @@
-const { handlers } = require("../utils/errorHandler");
+const { handlers } = require("./errorHandler");
 
 function validateParameters(parameters) {
 	parameters.forEach((param) => {

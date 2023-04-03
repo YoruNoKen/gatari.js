@@ -1,4 +1,4 @@
-const { mods } = require("../utils/mods");
+const { mods } = require("./mods");
 
 function mapRankedToString(scores) {
 	if (!Array.isArray(scores)) {

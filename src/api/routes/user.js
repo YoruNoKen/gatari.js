@@ -1,8 +1,8 @@
-const { handlers } = require("../utils/errorHandler");
-const { stringToID } = require("../utils/StringToNumber");
-const { mods } = require("../utils/mods");
-const { changeValues } = require("../utils/changeValues");
-const { validateParameters } = require("../utils/validateParameters");
+const { handlers } = require("../../utilities/errorHandler");
+const { stringToID } = require("../../utilities/StringToNumber");
+const { mods } = require("../../utilities/mods");
+const { changeValues } = require("../../utilities/changeValues");
+const { validateParameters } = require("../../utilities/validateParameters");
 
 const baseURL = "https://api.gatari.pw";
 const user = {

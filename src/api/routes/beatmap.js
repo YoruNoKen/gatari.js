@@ -1,6 +1,6 @@
 const baseURL = "https://api.gatari.pw";
-const { changeValues } = require("../utils/changeValues");
-const { handlers } = require("../utils/errorHandler");
+const { changeValues } = require("../../utilities/changeValues");
+const { handlers } = require("../../utilities/errorHandler");
 
 const beatmap = {
 	topScores: async function (mode, id) {

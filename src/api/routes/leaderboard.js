@@ -1,5 +1,5 @@
 const baseURL = "https://api.gatari.pw";
-const { handlers } = require("../utils/errorHandler");
+const { handlers } = require("../../utilities/errorHandler");
 
 const leaderboard = {
 	score: async function (mode, page, country) {

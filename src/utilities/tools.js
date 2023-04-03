@@ -1,5 +1,5 @@
 const baseURL = "https://osu.gatari.pw";
-const { mods } = require("../utils/mods");
+const { mods } = require("./mods");
 
 function accuracy({ n300, n100, n50, nmiss, ngeki, nkatu, mode }) {
 	if (!mode) throw new Error("mode is not defined");

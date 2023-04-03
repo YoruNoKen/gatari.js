@@ -1,9 +1,11 @@
-const { mods } = require("./utils/mods");
-const { tools } = require("./utils/tools");
-const { user } = require("./Functions/user");
-const { beatmap } = require("./Functions/beatmap");
-const { leaderboard } = require("./Functions/leaderboard");
-const { other } = require("./Functions/other");
+const { mods } = require("./utilities/mods");
+const { tools } = require("./utilities/tools");
+
+// importing handlers
+const { user } = require("./api/routes/user");
+const { beatmap } = require("./api/routes/beatmap");
+const { leaderboard } = require("./api/routes/leaderboard");
+const { other } = require("./api/routes/other");
 
 module.exports = {
 	v1: {
