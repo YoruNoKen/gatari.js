@@ -1,12 +1,13 @@
 {
-  "name": "gatari-api",
+  "name": "gatari-api-wrapper",
   "version": "1.0.0",
   "description": "Simple wrapper for the gatari api written in JavaScript.",
   "main": "src/index.js",
   "keywords": [
     "gatari",
     "gatari api",
-    "gatari api wrapper"
+    "gatari api wrapper",
+    "osu"
   ],
   "author": "yoru#9267",
   "license": "MIT",
