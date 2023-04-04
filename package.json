@@ -1,6 +1,6 @@
 {
   "name": "gatari-api-wrapper",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Simple wrapper for the gatari API written in JavaScript.",
   "main": "src/index.js",
   "keywords": [
