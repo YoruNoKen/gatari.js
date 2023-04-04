@@ -3,7 +3,7 @@ const { changeValues } = require("../../utilities/changeValues");
 const { handlers } = require("../../utilities/errorHandler");
 
 const beatmap = {
-	topScores: async function (mode, id) {
+	leaderboard: async function (mode, id) {
 		if (mode === undefined) {
 			throw new Error("mode parameter must be defined and a number");
 		}

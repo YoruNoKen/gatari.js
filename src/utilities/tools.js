@@ -1,6 +1,3 @@
-const baseURL = "https://osu.gatari.pw";
-const { mods } = require("./mods");
-
 function accuracy({ n300, n100, n50, nmiss, ngeki, nkatu, mode }) {
 	if (!mode) throw new Error("mode is not defined");
 	if (n300 < 0) throw new Error("Invalid 300 count");
@@ -166,30 +163,9 @@ function grade({ n300, n100, n50, nmiss, nkatu, ngeki, mode, mods }) {
 	}
 }
 
-async function ppCalculator({ beatmap_id, accuracy, misses, max_combo, mods: mod }) {
-	if (beatmap_id == undefined || accuracy == undefined || misses == undefined || max_combo == undefined || mod == undefined) {
-		throw new Error("all parameters must be defined");
-	}
-
-	let _mods = mod;
-	if (isNaN(mod)) {
-		_mods = mods.id(mod);
-	}
-
-	const url = `${baseURL}/letsapi/v1/pp?b=${beatmap_id}&a=${accuracy}&x=${misses}&c=${max_combo}&m=${_mods}`;
-	const response = await fetch(url).then((res) => res.json());
-
-	if (response.message != "ok") {
-		throw new Error(response.message);
-	}
-
-	return response;
-}
-
 module.exports = {
 	tools: {
 		accuracy,
 		grade,
-		ppCalculator,
 	},
 };

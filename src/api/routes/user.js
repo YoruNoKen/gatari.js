@@ -39,7 +39,7 @@ const user = {
 			throw error;
 		}
 
-		return response.users;
+		return response.stats;
 	},
 
 	recent: async function (user, { mode, page, length, include_fails }) {
@@ -188,7 +188,7 @@ const user = {
 		return response.result;
 	},
 
-	pinned: async function (user, { mode, page, length }) {
+	pinned: async function (user, mode) {
 		/** 
 		if user param is not a number, turn it into a number
 		*/
@@ -213,7 +213,10 @@ const user = {
 		const url = `${baseURL}/user/scores/favs?id=${user}&mode=${mode}${filter}`;
 		const response = await fetch(url).then((res) => res.json());
 
-		const scores = changeValues(response.scores);
+		let scores = changeValues(response.scores);
+		if (scores == undefined) {
+			scores = [];
+		}
 
 		var error = handlers.errorHandler(response.code);
 		if (error != undefined) {
@@ -223,19 +226,24 @@ const user = {
 		return scores;
 	},
 
-	favorites: async function (user, page) {
+	achievements: async function (user, mode) {
+		const url = `${baseURL}/user/achievements?u=${user}&mode=${mode}`;
+		const response = await fetch(url).then((res) => res.json());
+
+		var error = handlers.errorHandler(response.code);
+		if (error != undefined) {
+			throw error;
+		}
+
+		return response.achievements;
+	},
+
+	likedMaps: async function (user, page) {
 		/** 
 		if user param is not a number, turn it into a number
 		*/
 		if (typeof user !== "number") {
 			user = await stringToID(user);
-		}
-
-		if (page != undefined) {
-			const _error = handlers.validHandler(page);
-			if (_error !== undefined) {
-				throw _error;
-			}
 		}
 
 		let filter = "";

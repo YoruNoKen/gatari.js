@@ -62,10 +62,13 @@ function changeValues(scores) {
 		const mods_name = mods.name(mods_bit);
 		scores.mods_name = mods_name;
 
-		const _scores = mapRankedToString(scores); // add "status" object
-		if (_scores != undefined) {
-			return _scores;
+		if (scores.beatmap) {
+			const _scores = mapRankedToString(scores); // add "status" object
+			if (_scores != undefined) {
+				return _scores;
+			}
 		}
+
 		return scores;
 	}
 	for (let i = 0; i < scores.length; i++) {
@@ -73,12 +76,14 @@ function changeValues(scores) {
 		const mods_name = mods.name(mods_bit);
 		scores[i].mods_name = mods_name;
 
-		const _scores = mapRankedToString(scores); // add "status" object
-		if (_scores != undefined) {
-			return _scores;
+		if (scores.beatmap) {
+			const _scores = mapRankedToString(scores); // add "status" object
+			if (_scores != undefined) {
+				return _scores;
+			}
 		}
 		return scores;
 	}
 }
 
-module.exports = { changeValues };
+module.exports = { changeValues, mapRankedToString };
