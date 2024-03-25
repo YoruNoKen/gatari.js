@@ -37,7 +37,7 @@ interface Score {
     views: number;
 }
 
-export interface UserRecent {
+export interface UserScores {
     code: number;
     count: number;
     scores: Array<Score>;

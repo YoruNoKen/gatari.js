@@ -1,6 +1,7 @@
 export enum Request {
     USER = "user",
     USERS = "users",
+    SCORE = "scores",
     LEADERBOARD = "leaderboard",
     BEATMAP = "beatmap"
 }
