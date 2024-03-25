@@ -1,19 +1,27 @@
 {
-  "name": "gatari-api-wrapper",
-  "version": "1.0.1",
-  "description": "Simple wrapper for the gatari API written in JavaScript.",
-  "main": "src/index.js",
+  "name": "gatari.js",
+  "version": "1.0.0",
+  "description": "A zero dependency API wrapper for the gatari written in TypeScript.",
+  "main": "lib/index.js",
   "keywords": [
     "gatari",
     "gatari api",
     "gatari api wrapper",
+    "gatari javascript",
+    "gatari js",
     "osu"
   ],
-  "author": "yoru#9267",
+  "author": "@yorunoken",
   "license": "MIT",
-  "dependencies": {},
+  "devDependencies": {
+    "@stylistic/eslint-plugin": "^1.6.3",
+    "@typescript-eslint/eslint-plugin": "^7.1.1",
+    "eslint-import-resolver-typescript": "^3.6.1",
+    "eslint-plugin-import": "^2.29.1",
+    "eslit": "^6.0.0"
+  },
   "repository": {
     "type": "git",
-    "url": "https://github.com/YoruNoKen/gatari-api-wrapper"
+    "url": "https://github.com/YoruNoKen/gatari.js"
   }
 }
