@@ -1,7 +1,5 @@
 import { errorHandler } from "@utils/errorHandler";
 import { mods as modsCalc } from "@utils/mods";
-import { changeValues } from "@utils/changeValues";
-import { validateParameters } from "@utils/validateParameters";
 import { request } from "@utils/request";
 import { Request, User } from "@type/enums";
 import type { Mode } from "@type/enums";
@@ -123,9 +121,7 @@ const user = {
     },
 
     likedMaps: async function (user, page) {
-        /**
-		if user param is not a number, turn it into a number
-		*/
+        // if user param is not a number, turn it into a number
         if (typeof user !== "number")
             user = await stringToID(user);
 
