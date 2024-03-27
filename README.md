@@ -5,6 +5,10 @@
 [![downloads](https://img.shields.io/npm/dm/gatari-api-wrapper?color=625FAD&style=for-the-badge)](https://npm-stat.com/charts.html?package=gatari-api-wrapper)
 ![license](https://img.shields.io/npm/l/gatari-api-wrapper?color=AD5F8C&style=for-the-badge)
 
+## Usage
+
+### [Documentation](https://github.com/YoruNoKen/gatari-api-wrapper/wiki)
+
 ## Installation
 
 ```bash

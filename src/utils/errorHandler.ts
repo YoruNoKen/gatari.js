@@ -10,7 +10,3 @@ export function errorHandler(code: number): true | Error {
 
     return true;
 }
-
-export function validHandler(param: number): true | Error {
-    return isNaN(param) ? new Error(`"${param}" parameter must be a number`) : true;
-}

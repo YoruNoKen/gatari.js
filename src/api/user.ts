@@ -2,10 +2,9 @@ import { errorHandler } from "@utils/errorHandler";
 import { mods as modsCalc } from "@utils/mods";
 import { request } from "@utils/request";
 import { Request, User } from "@type/enums";
+import { changeMods } from "@utils/changeMods";
 import type { Mode } from "@type/enums";
-import type { MostPlayed, UserInfo, UserScores, UserStats } from "@type/user";
-
-const baseUrl = "https://api.gatari.pw";
+import type { MostPlayed, UserInfo, UserScores, UserStats, UserAchievements, UserFavorites, UserGraph, UserActivity, UserBeatmapScore } from "@type/user";
 
 async function info(user: string | number | Array<string | number>): Promise<UserInfo> {
     let params = "";
@@ -51,7 +50,10 @@ async function recent(id: number, mode: Mode, { page, pageLength, includeFails }
     if (error !== true)
         throw error;
 
-    return response.json() as Promise<UserScores>;
+    const data = await response.json() as UserScores;
+    changeMods(data);
+
+    return data;
 }
 
 async function best(id: number, mode: Mode, { page = 1, pageLength = 50, mods }: { page?: number, pageLength?: number, mods?: Array<string> }): Promise<UserScores> {
@@ -69,7 +71,10 @@ async function best(id: number, mode: Mode, { page = 1, pageLength = 50, mods }:
     if (error !== true)
         throw error;
 
-    return response.json() as Promise<UserScores>;
+    const data = await response.json() as UserScores;
+    changeMods(data);
+
+    return data;
 }
 
 async function firsts(id: number, mode: Mode, { page = 1, pageLength = 50 }: { page?: number, pageLength?: number }): Promise<UserScores> {
@@ -81,7 +86,10 @@ async function firsts(id: number, mode: Mode, { page = 1, pageLength = 50 }: { p
     if (error !== true)
         throw error;
 
-    return response.json() as Promise<UserScores>;
+    const data = await response.json() as UserScores;
+    changeMods(data);
+
+    return data;
 }
 
 async function mostPlayed(id: number, mode: Mode, { page = 1 }: { page?: number }): Promise<MostPlayed> {
@@ -105,104 +113,78 @@ async function pinned(id: number, mode: Mode): Promise<UserScores> {
     if (error !== true)
         throw error;
 
-    return response.json() as Promise<UserScores>;
+    const data = await response.json() as UserScores;
+    changeMods(data);
+
+    return data;
 }
 
-const user = {
-    achievements: async function (user, mode) {
-        const url = `${baseUrl}/user/achievements?u=${user}&mode=${mode}`;
-        const response = await fetch(url).then(async (res) => res.json());
+async function achievements(id: number, mode: Mode): Promise<UserAchievements> {
+    const params = `id=${id}&mode=${mode}`;
 
-        const error = errorHandler(response.code);
-        if (error != undefined)
-            throw error;
+    const response = await request(Request.USER, User.ACHIEVEMENTS, params);
 
-        return response.achievements;
-    },
+    const error = errorHandler(response.status);
+    if (error !== true)
+        throw error;
 
-    likedMaps: async function (user, page) {
-        // if user param is not a number, turn it into a number
-        if (typeof user !== "number")
-            user = await stringToID(user);
+    return response.json() as Promise<UserAchievements>;
+}
 
-        let filter = "";
-        if (page !== undefined)
-            filter += `&p=${page}`;
+async function likedMaps(id: number, page = 1): Promise<UserFavorites> {
+    const params = `id=${id}&p=${page}`;
 
-        const url = `${baseUrl}/user/favs?id=${user}${filter}`;
-        const response = await fetch(url).then(async (res) => res.json());
+    const response = await request(Request.USER, User.FAV_MAP, params);
 
-        const error = errorHandler(response.code);
-        if (error != undefined)
-            throw error;
+    const error = errorHandler(response.status);
+    if (error !== true)
+        throw error;
 
-        return response.result;
-    },
+    return response.json() as Promise<UserFavorites>;
+}
 
-    ppGraph: async function (user, mode) {
-        /**
-		if user param is not a number, turn it into a number
-		*/
-        if (typeof user !== "number")
-            user = await stringToID(user);
+async function graph(id: number, mode: Mode): Promise<UserGraph> {
+    const params = `id=${id}&mode=${mode}`;
 
-        if (mode === undefined)
-            throw new Error("mode parameter must be a number");
+    const response = await request(Request.USER, User.GRAPH, params);
 
-        const url = `${baseUrl}/user/charts?u=${user}&mode=${mode}`;
-        const response = await fetch(url).then(async (res) => res.json());
+    const error = errorHandler(response.status);
+    if (error !== true)
+        throw error;
 
-        const error = errorHandler(response.code);
-        if (error != undefined)
-            throw error;
+    return response.json() as Promise<UserGraph>;
+}
 
-        return response.data;
-    },
+async function activity(id: number, mode: Mode): Promise<UserActivity> {
+    const params = `id=${id}&mode=${mode}`;
 
-    activity: async function (user, mode) {
-        /**
-		if user param is not a number, turn it into a number
-		*/
-        if (typeof user !== "number")
-            user = await stringToID(user);
+    const response = await request(Request.USER, User.ACTIVITY, params);
 
-        if (mode === undefined)
-            throw new Error("mode parameter must be a number");
+    const error = errorHandler(response.status);
+    if (error !== true)
+        throw error;
 
-        const url = `${baseUrl}/user/events?u=${user}&mode=${mode}`;
-        const response = await fetch(url).then(async (res) => res.json());
+    return response.json() as Promise<UserActivity>;
+}
 
-        const error = errorHandler(response.code);
-        if (error != undefined)
-            throw error;
+async function beatmap(id: number, mode: Mode, beatmapId: number): Promise<UserBeatmapScore> {
+    const params = `b=${beatmapId}id=${id}&mode=${mode}`;
 
-        return response.data;
-    },
+    const response = await request(Request.USER_BEATMAP, User.SCORE, params);
 
-    beatmapScore: async function (user, mode, beatmap_id) {
-        /**
-		if user param is not a number, turn it into a number
-		*/
-        if (typeof user !== "number")
-            user = await stringToID(user);
+    const error = errorHandler(response.status);
+    if (error !== true)
+        throw error;
 
-        if (isNaN(beatmap_id))
-            throw new Error("beatmap_id parameter must be a number");
+    const data = await response.json() as UserBeatmapScore;
+    changeMods(data);
 
-        if (mode === undefined)
-            throw new Error("mode parameter must be a number");
+    return data;
+}
 
-        const url = `${baseUrl}/beatmap/user/score?b=${beatmap_id}&u=${user}&mode=${mode}`;
-        const response = await fetch(url).then(async (res) => res.json());
-
-        const score = changeValues(response.score);
-
-        const error = errorHandler(response.code);
-        if (error != undefined)
-            throw error;
-
-        return score;
-    }
+const scores = {
+    recent, best, beatmap
 };
 
-module.exports = { user };
+export default { achievements, activity, scores, firsts, graph, info, stats, pinned, likedMaps, mostPlayed };
+

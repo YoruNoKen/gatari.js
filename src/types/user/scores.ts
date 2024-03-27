@@ -1,3 +1,5 @@
+import type { Grades } from "@type/enums";
+
 interface Beatmap {
     ar: number;
     beatmap_id: number;
@@ -29,9 +31,10 @@ interface Score {
     isfav: boolean;
     max_combo: number;
     mods: number;
+    mods_name: string;
     play_mode: number;
     pp: number;
-    ranking: string;
+    ranking: Grades;
     score: number;
     time: string;
     views: number;
