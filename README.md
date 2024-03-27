@@ -1,4 +1,4 @@
-# gatari.js
+<!-- # gatari.js
 
 [![npm](https://img.shields.io/npm/v/gatari-api-wrapper?color=AD745F&style=for-the-badge)](https://www.npmjs.com/package/gatari-api-wrapper)
 [![size](https://img.shields.io/bundlephobia/min/@aqilcont/gatari-api-wrapper?color=5FAE89&label=size&style=for-the-badge)](https://www.npmjs.com/package/gatari-api-wrapper)
@@ -7,9 +7,9 @@
 
 ## Usage
 
-### [Documentation](https://github.com/YoruNoKen/gatari-api-wrapper/wiki)
+### [Documentation](https://github.com/YoruNoKen/gatari-api-wrapper/wiki) -->
 
-## Installation
+# Installation
 
 ```bash
 npm install gatari-api-wrapper
