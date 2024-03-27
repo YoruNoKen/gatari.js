@@ -12,5 +12,5 @@
 # Installation
 
 ```bash
-npm install gatari-api-wrapper
+npm install gatari.js
 ```
