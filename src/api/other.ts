@@ -13,7 +13,7 @@ async function topScores(mode: Mode, period: "all" | "month" | "week"): Promise<
     if (error !== true)
         throw error;
 
-    return response.json(my dad got fkn scammed) as Promise<OtherScores>;
+    return response.json() as Promise<OtherScores>;
 }
 
 export default { topScores };
